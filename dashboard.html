@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leo · 团队管理看板</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background:#0f0f1a; color:#e0e0e0; min-height:100vh; padding:20px; }
+.dash { max-width:1400px; margin:0 auto; }
+
+/* Header */
+.header { display:flex; justify-content:space-between; align-items:center; margin-bottom:25px; }
+.header h1 { font-size:1.5rem; font-weight:700; }
+.header h1 span { color:#7c5cff; }
+.status-dot { display:inline-block; width:8px; height:8px; background:#4ade80; border-radius:50%; margin-right:6px; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.status-text { font-size:0.8rem; color:#888; }
+.header-right { text-align:right; }
+.header-right .date { font-size:0.85rem; color:#888; }
+.header-right .time { font-size:1.8rem; font-weight:300; color:#7c5cff; }
+
+/* Grid */
+.grid { display:grid; gap:15px; margin-bottom:20px; }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: 2fr 1fr; }
+.card { background:#1a1a2e; border-radius:12px; padding:18px; border:1px solid #2a2a3e; }
+.card h3 { font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px; color:#7c5cff; margin-bottom:12px; }
+
+/* KPI */
+.kpi-value { font-size:1.8rem; font-weight:700; }
+.kpi-label { font-size:0.75rem; color:#888; margin-bottom:4px; }
+.kpi-sub { font-size:0.75rem; color:#555; }
+.kpi-green { color:#4ade80; }
+.kpi-red { color:#f87171; }
+
+/* Progress */
+.progress-bar { height:6px; background:#2a2a3e; border-radius:3px; margin:8px 0; overflow:hidden; }
+.progress-fill { height:100%; border-radius:3px; transition:width 1s ease; }
+.fill-green { background:linear-gradient(90deg,#4ade80,#22d3ee); }
+.fill-purple { background:linear-gradient(90deg,#7c5cff,#a78bfa); }
+.fill-orange { background:linear-gradient(90deg,#fb923c,#fbbf24); }
+.progress-text { display:flex; justify-content:space-between; font-size:0.75rem; color:#888; }
+
+/* Org Chart */
+.org { text-align:center; padding:15px 0; }
+.org-ceo { display:inline-block; background:#7c5cff; color:#fff; padding:8px 20px; border-radius:8px; font-weight:600; font-size:0.9rem; margin-bottom:20px; }
+.org-line { width:2px; height:20px; background:#3a3a4e; margin:0 auto; }
+.org-level { display:flex; justify-content:center; gap:10px; margin-top:10px; flex-wrap:wrap; }
+.org-member { background:#2a2a3e; padding:10px 14px; border-radius:8px; text-align:center; min-width:100px; border:1px solid #3a3a4e; }
+.org-member .icon { font-size:1.2rem; display:block; margin-bottom:3px; }
+.org-member .name { font-size:0.8rem; font-weight:600; }
+.org-member .role { font-size:0.65rem; color:#888; }
+.org-member.active { border-color:#7c5cff; background:#1e1e3a; }
+
+/* Table */
+table { width:100%; border-collapse:collapse; font-size:0.8rem; }
+th { text-align:left; padding:8px 6px; color:#888; font-weight:500; font-size:0.7rem; text-transform:uppercase; border-bottom:1px solid #2a2a3e; }
+td { padding:8px 6px; border-bottom:1px solid #1a1a2e; }
+.status { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; }
+.s-done { background:#4ade8020; color:#4ade80; }
+.s-ing { background:#7c5cff20; color:#7c5cff; }
+.s-pend { background:#88888820; color:#888; }
+.s-block { background:#f8717120; color:#f87171; }
+
+/* Timeline */
+.tl-item { display:flex; gap:12px; margin-bottom:12px; }
+.tl-time { font-size:0.7rem; color:#555; width:50px; flex-shrink:0; padding-top:2px; }
+.tl-dot { width:8px; height:8px; border-radius:50%; background:#7c5cff; margin-top:4px; flex-shrink:0; }
+.tl-dot.green { background:#4ade80; }
+.tl-dot.orange { background:#fb923c; }
+.tl-content { font-size:0.8rem; }
+.tl-content p { margin-bottom:2px; }
+.tl-content .label { font-size:0.65rem; color:#888; }
+
+/* Responsive */
+@media(max-width:900px) {
+  .grid-4 { grid-template-columns: repeat(2,1fr); }
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* Footer */
+.footer { text-align:center; font-size:0.75rem; color:#444; padding:20px 0; }
+</style>
+</head>
+<body>
+<div class="dash">
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1>🐯 <span>Leo</span> 管理控制台</h1>
+      <div><span class="status-dot"></span><span class="status-text">系统运行正常 · 自主运营模式</span></div>
+    </div>
+    <div class="header-right">
+      <div class="date" id="currentDate">2026-05-16</div>
+      <div class="time" id="currentTime">12:00</div>
+    </div>
+  </div>
+
+  <!-- KPI Row -->
+  <div class="grid grid-4">
+    <div class="card">
+      <div class="kpi-label">📊 项目进度</div>
+      <div class="kpi-value kpi-green" id="kpiProgress">12%</div>
+      <div class="progress-bar"><div class="progress-fill fill-green" style="width:12%"></div></div>
+      <div class="progress-text"><span>第一阶段 · 搭建期</span><span>Day 2 of 210</span></div>
+    </div>
+    <div class="card">
+      <div class="kpi-label">💰 当前余额</div>
+      <div class="kpi-value kpi-green">¥100</div>
+      <div class="kpi-sub">启动资金 · 未动用</div>
+    </div>
+    <div class="card">
+      <div class="kpi-label">📦 累计订单</div>
+      <div class="kpi-value" style="color:#fbbf24">0</div>
+      <div class="kpi-sub">第一单 · 筹备中</div>
+    </div>
+    <div class="card">
+      <div class="kpi-label">🎯 核心目标</div>
+      <div class="kpi-value" style="color:#f87171">¥1,000,000</div>
+      <div class="kpi-sub">截止 2026-12-16 · 剩余210天</div>
+    </div>
+  </div>
+
+  <!-- Team + Projects -->
+  <div class="grid grid-2">
+    <!-- Org Chart -->
+    <div class="card">
+      <h3>🏢 团队架构</h3>
+      <div class="org">
+        <div class="org-ceo">🐯 Leo · CEO / 总统筹</div>
+        <div class="org-line"></div>
+        <div class="org-level">
+          <div class="org-member active">
+            <span class="icon">✍️</span>
+            <span class="name">Agent A</span>
+            <span class="role">内容创作</span>
+          </div>
+          <div class="org-member">
+            <span class="icon">📡</span>
+            <span class="name">Agent B</span>
+            <span class="role">流量运营</span>
+          </div>
+          <div class="org-member">
+            <span class="icon">💬</span>
+            <span class="name">Agent C</span>
+            <span class="role">客服交付</span>
+          </div>
+          <div class="org-member">
+            <span class="icon">🔧</span>
+            <span class="name">Agent D</span>
+            <span class="role">站点运维</span>
+          </div>
+          <div class="org-member">
+            <span class="icon">🧪</span>
+            <span class="name">Agent E</span>
+            <span class="role">项目研发</span>
+          </div>
+        </div>
+        <div style="font-size:0.7rem;color:#555;margin-top:10px;">⬆ 虚线角色待子Agent实例化</div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="card">
+      <h3>⏱ 今日时间线</h3>
+      <div class="tl-item">
+        <span class="tl-time">10:57</span>
+        <span class="tl-dot"></span>
+        <div class="tl-content"><p>📜 接收主人最高指令 · 7个月¥100万</p></div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">11:06</span>
+        <span class="tl-dot green"></span>
+        <div class="tl-content"><p>✅ 网站改版LeoAI服务上线</p><span class="label">GitHub同步</span></div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">11:16</span>
+        <span class="tl-dot green"></span>
+        <div class="tl-content"><p>✅ 数字产品：AI文案大师模板包v1.0</p></div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">11:44</span>
+        <span class="tl-dot orange"></span>
+        <div class="tl-content"><p>🔄 战略转型 · Leo核心规划+人设+团队搭建</p></div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">11:47</span>
+        <span class="tl-dot" style="background:#7c5cff"></span>
+        <div class="tl-content"><p>🔄 全面自主运营模式激活</p><span class="label">看板持续更新中</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Current Tasks -->
+  <div class="grid" style="margin-top:15px">
+    <div class="card">
+      <h3>🎯 当前任务队列</h3>
+      <table>
+        <tr><th>任务</th><th>优先级</th><th>状态</th><th>负责人</th></tr>
+        <tr><td>🔲 多Agent子账号创建与分工</td><td>P0</td><td><span class="status s-ing">进行中</span></td><td>Leo</td></tr>
+        <tr><td>🔲 可视化看板上线部署</td><td>P0</td><td><span class="status s-ing">本文件</span></td><td>Leo</td></tr>
+        <tr><td>🔲 网站真实功能开发</td><td>P0</td><td><span class="status s-pend">待启动</span></td><td>Agent D</td></tr>
+        <tr><td>🔲 Felix&Nat深度研究报告</td><td>P1</td><td><span class="status s-pend">待启动</span></td><td>Leo</td></tr>
+        <tr><td>🔲 抖音/B站内容储备池</td><td>P1</td><td><span class="status s-pend">待账号到位</span></td><td>Agent A</td></tr>
+        <tr><td>🔲 自动化交付链路搭建</td><td>P1</td><td><span class="status s-pend">待启动</span></td><td>Agent D</td></tr>
+        <tr><td>🔲 盈利模式验证·第一笔订单</td><td>P0</td><td><span class="status s-pend">待渠道通</span></td><td>Leo</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Roadmap -->
+  <div class="grid" style="margin-top:15px">
+    <div class="card">
+      <h3>🗺️ 路线图</h3>
+      <table>
+        <tr><th>阶段</th><th>时间</th><th>目标</th><th>状态</th></tr>
+        <tr><td>🏗️ 搭建期</td><td>Day 1-7</td><td>网站完善、团队就绪、内容储备、首单落地</td><td><span class="status s-ing">进行中 · Day 2</span></td></tr>
+        <tr><td>🚀 验证期</td><td>Week 2-4</td><td>跑通获客→成交→交付闭环，月入¥3,000-5,000</td><td><span class="status s-pend">待启动</span></td></tr>
+        <tr><td>📈 放大期</td><td>Month 2-3</td><td>多平台放量、团队扩编、单月破万</td><td><span class="status s-pend">待启动</span></td></tr>
+        <tr><td>🏭 规模化</td><td>Month 4-6</td><td>产品矩阵、自动化系统、月入破十万</td><td><span class="status s-pend">待启动</span></td></tr>
+        <tr><td>🎯 冲刺期</td><td>Month 7</td><td>百 万目标冲刺</td><td><span class="status s-pend">待启动</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    🐯 Leo · AI创业者 · 自主运营中 | 主人：Devin Wu | v1.0.0
+  </div>
+</div>
+
+<script>
+function updateClock() {
+  const now = new Date();
+  const cn = new Date(now.toLocaleString('en-US', {timeZone:'Asia/Shanghai'}));
+  document.getElementById('currentTime').textContent =
+    cn.getHours().toString().padStart(2,'0') + ':' + cn.getMinutes().toString().padStart(2,'0');
+}
+updateClock();
+setInterval(updateClock, 10000);
+</script>
+</body>
+</html>
