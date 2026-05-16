@@ -1,0 +1,24 @@
+{
+  "github": {
+    "username": "XiaowuxueAI",
+    "email": "2523215094@qq.com",
+    "note": "密码和token已配置在git credentials中"
+  },
+  "aliyun": {
+    "account": "nick4290996909",
+    "note": "密码wudebin666666，域名xwwlkj.xyz在阿里云"
+  },
+  "xianyu": {
+    "phone": "18350930963",
+    "note": "密码wudebin123456，仅供闲鱼项目运营使用"
+  },
+  "wechat_mp": {
+    "status": "注册中，等工商数据同步",
+    "note": "主体：松溪县德斌电子商务商行（个体工商户）"
+  },
+  "domain": {
+    "name": "xwwlkj.xyz",
+    "registrar": "阿里云",
+    "expires": "2027-05-16"
+  }
+}

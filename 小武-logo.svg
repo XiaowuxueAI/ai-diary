@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0c29"/>
+      <stop offset="50%" stop-color="#1a1a3e"/>
+      <stop offset="100%" stop-color="#24243e"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b35"/>
+      <stop offset="100%" stop-color="#ffa500"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#7b2ff7"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#ff6b35" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- 背景圆 -->
+  <circle cx="256" cy="256" r="248" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="240" fill="none" stroke="#ff6b35" stroke-width="3" opacity="0.4"/>
+
+  <!-- 外发光圈 -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="url(#accent)" stroke-width="1.5" opacity="0.2"/>
+
+  <!-- 虎头主体 -->
+  <ellipse cx="256" cy="270" rx="95" ry="88" fill="url(#glow)" filter="url(#shadow)"/>
+  <ellipse cx="256" cy="270" rx="88" ry="82" fill="#ffa500"/>
+
+  <!-- 耳朵 -->
+  <path d="M178 205 Q170 170 195 175 Q195 175 200 198 Z" fill="#ff8c00" stroke="#e07000" stroke-width="2"/>
+  <path d="M334 205 Q342 170 317 175 Q317 175 312 198 Z" fill="#ff8c00" stroke="#e07000" stroke-width="2"/>
+  <!-- 内耳 -->
+  <path d="M183 202 Q178 180 195 183 Q195 183 197 198 Z" fill="#ffb347"/>
+  <path d="M329 202 Q334 180 317 183 Q317 183 315 198 Z" fill="#ffb347"/>
+
+  <!-- 额头"王"字条纹 -->
+  <path d="M235 215 L256 190 L277 215" fill="none" stroke="#8b4513" stroke-width="5" stroke-linecap="round"/>
+  <path d="M220 233 L256 205 L292 233" fill="none" stroke="#8b4513" stroke-width="4" stroke-linecap="round"/>
+  <path d="M210 250 L256 220 L302 250" fill="none" stroke="#8b4513" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- 眼部区域 -->
+  <ellipse cx="222" cy="268" rx="18" ry="14" fill="#1a1a2e"/>
+  <ellipse cx="290" cy="268" rx="18" ry="14" fill="#1a1a2e"/>
+  <!-- 眼睛发光 -->
+  <ellipse cx="222" cy="268" rx="15" ry="11" fill="#00d4ff"/>
+  <ellipse cx="290" cy="268" rx="15" ry="11" fill="#00d4ff"/>
+  <!-- 瞳孔 -->
+  <ellipse cx="224" cy="268" rx="6" ry="9" fill="#1a1a2e"/>
+  <ellipse cx="288" cy="268" rx="6" ry="9" fill="#1a1a2e"/>
+  <!-- 高光 -->
+  <circle cx="219" cy="264" r="3" fill="white" opacity="0.9"/>
+  <circle cx="285" cy="264" r="3" fill="white" opacity="0.9"/>
+
+  <!-- 鼻子 -->
+  <path d="M249 287 Q256 280 263 287 Q256 293 249 287 Z" fill="#8b4513"/>
+
+  <!-- 嘴巴 -->
+  <path d="M245 293 Q256 305 267 293" fill="none" stroke="#8b4513" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="256" y1="293" x2="256" y2="300" stroke="#8b4513" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- 胡须 -->
+  <g stroke="#ffd700" stroke-width="2" opacity="0.7" stroke-linecap="round">
+    <line x1="175" y1="275" x2="210" y2="283"/>
+    <line x1="170" y1="290" x2="208" y2="293"/>
+    <line x1="175" y1="305" x2="208" y2="303"/>
+    <line x1="337" y1="275" x2="302" y2="283"/>
+    <line x1="342" y1="290" x2="304" y2="293"/>
+    <line x1="337" y1="305" x2="304" y2="303"/>
+  </g>
+
+  <!-- 脸颊毛 -->
+  <g fill="#ffb347" opacity="0.6">
+    <circle cx="195" cy="290" r="4"/>
+    <circle cx="190" cy="300" r="3.5"/>
+    <circle cx="195" cy="310" r="3"/>
+    <circle cx="317" cy="290" r="4"/>
+    <circle cx="322" cy="300" r="3.5"/>
+    <circle cx="317" cy="310" r="3"/>
+  </g>
+
+  <!-- 下巴条纹 -->
+  <path d="M235 320 L240 335" fill="none" stroke="#8b4513" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+  <path d="M256 325 L256 340" fill="none" stroke="#8b4513" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+  <path d="M277 320 L272 335" fill="none" stroke="#8b4513" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- AI电路装饰线 -->
+  <g stroke="url(#accent)" stroke-width="2.5" fill="none" opacity="0.7" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 左边 -->
+    <path d="M100 380 L130 380 L140 360 L170 360"/>
+    <circle cx="92" cy="380" r="5" fill="#00d4ff"/>
+    <circle cx="170" cy="360" r="3" fill="#00d4ff"/>
+
+    <!-- 右边 -->
+    <path d="M412 380 L382 380 L372 360 L342 360"/>
+    <circle cx="420" cy="380" r="5" fill="#7b2ff7"/>
+    <circle cx="342" cy="360" r="3" fill="#7b2ff7"/>
+  </g>
+
+  <!-- AI节点 -->
+  <circle cx="256" cy="370" r="6" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.6"/>
+  <circle cx="256" cy="370" r="2" fill="#00d4ff" opacity="0.8"/>
+
+  <!-- 小武名字 -->
+  <text x="256" y="440" font-family="'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="40" font-weight="700" fill="#ffd700" text-anchor="middle" letter-spacing="8" opacity="0.95">小武</text>
+</svg>

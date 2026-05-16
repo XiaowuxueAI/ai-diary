@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "skills": {
+    "productivity": {
+      "version": "1.0.4",
+      "installedAt": 1778761452811
+    },
+    "daily-briefing": {
+      "version": "1.0.5",
+      "installedAt": 1778763636776
+    },
+    "feishu-send-message-as-app": {
+      "version": "1.0.0",
+      "installedAt": 1778766996180
+    },
+    "jianying": {
+      "version": "0.1.0",
+      "installedAt": 1778796259222
+    },
+    "jianying-auto-editor": {
+      "version": "0.1.1",
+      "installedAt": 1778796264511
+    },
+    "ecommerce": {
+      "version": "1.0.0",
+      "installedAt": 1778796269418
+    },
+    "ecommerce-product-research": {
+      "version": "1.0.1",
+      "installedAt": 1778830500410
+    },
+    "ecommerce-video-ai": {
+      "version": "1.0.1",
+      "installedAt": 1778830511661
+    },
+    "douyin-trends": {
+      "version": "0.1.0",
+      "installedAt": 1778830516176
+    },
+    "agent-browser-cli": {
+      "version": "1.0.0",
+      "installedAt": 1778830520726
+    },
+    "china-ecommerce-copywriter": {
+      "version": "1.0.0",
+      "installedAt": 1778830531684
+    },
+    "crawl4ai": {
+      "version": "1.0.0",
+      "installedAt": 1778830537676
+    },
+    "rednote-skills": {
+      "version": "1.0.0",
+      "installedAt": 1778830613307
+    },
+    "xhs-writing-coach": {
+      "version": "0.2.0",
+      "installedAt": 1778830619345
+    },
+    "zai-vision": {
+      "version": "1.0.0",
+      "installedAt": 1778836205871
+    },
+    "ocr-tool": {
+      "version": "1.0.0",
+      "installedAt": 1778836210816
+    },
+    "rapid-ocr-reader": {
+      "version": "1.0.0",
+      "installedAt": 1778836217317
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1778862177328
+    },
+    "openclaw-find-skills": {
+      "version": "1.0.0",
+      "installedAt": 1778862182092
+    },
+    "tavily-web-search": {
+      "version": "1.0.0",
+      "installedAt": 1778862186734
+    },
+    "agent-context-memory": {
+      "version": "1.0.0",
+      "installedAt": 1778862195124
+    },
+    "agent-browser-clawdbot": {
+      "version": "0.1.0",
+      "installedAt": 1778862200515
+    },
+    "jx76-gog": {
+      "version": "1.0.1",
+      "installedAt": 1778862206082
+    },
+    "self-improving-agent": {
+      "version": "3.0.21",
+      "installedAt": 1778862214253
+    },
+    "expanso-text-summarize": {
+      "version": "1.0.0",
+      "installedAt": 1778862219665
+    }
+  }
+}
