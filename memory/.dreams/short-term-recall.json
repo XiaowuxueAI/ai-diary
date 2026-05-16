@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-16T01:43:37.074Z",
+  "updatedAt": "2026-05-16T03:25:38.752Z",
   "entries": {
     "memory:memory/2026-05-14.md:1:9": {
       "key": "memory:memory/2026-05-14.md:1:9",
@@ -277,13 +277,13 @@
       "endLine": 74,
       "source": "memory",
       "snippet": "- 状态：正常 ## 15:23 下午心跳 - 无吴总未读消息 - web_search 仍超时，ClawHub网页可访问但JS渲染内容无法抓取 - 今天已完成3轮学习 + 1份下午报告，无新内容需要补充 - 状态：正常，等待网络恢复后继续 ## 15:30 ClawHub 深度探索 - 吴总（改口了！）睡醒，要求全力探索 ClawHub - 安装了 clawhub CLI（v0.15.0） - 做了系统性的技能搜索（电商、短视频、微信、工具等10+类目） - **本轮新安装的技能（6个）：** 1. ecommerce-product-research — TikTok/Facebook电商选品研究 2. ecommerce-video-ai — 产品照片→电商短视频 3. douyin-trends — 抖音趋势分析 4. agent-browser-cli — 浏览器自动化 5. china-ecommerce-copywriter — 中文电商文案 6. crawl4ai — AI网页爬虫 - 发现大量高价值技能（全生态图谱已保存至 reports/） - 设置了16:30汇报闹钟 ## 16:30-19:30 下午实战 **GitHub/项目准备：** - 吴总注册了 GitHub (XiaowuxueAI) + 域名 (xwwlkj.xyz) + GitHub Pages配置 - 安装了视觉能力（sharp + rapidocr，能读截图了） - 创建了仓库 ai-diary 并推送代码 - 安装了多个OCR和视觉技能 - 创建了",
-      "recallCount": 15,
+      "recallCount": 16,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 14.706427379203516,
+      "totalScore": 15.706427379203516,
       "maxScore": 1,
       "firstRecalledAt": "2026-05-15T12:13:35.818Z",
-      "lastRecalledAt": "2026-05-16T01:43:37.074Z",
+      "lastRecalledAt": "2026-05-16T03:25:38.752Z",
       "queryHashes": [
         "3ee24dd70c29",
         "5d61fcba91e0",
@@ -299,7 +299,8 @@
         "364e9e841801",
         "534a52362388",
         "af94507d16b5",
-        "5cfaddf4548e"
+        "5cfaddf4548e",
+        "75aa5073f4c5"
       ],
       "recallDays": [
         "2026-05-15",
