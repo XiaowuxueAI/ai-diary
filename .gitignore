@@ -1,0 +1,9 @@
+node_modules/
+.secrets/
+canonical_cookie.txt
+chromium-browser_*.deb
+*.enc
+__pycache__/
+*.pyc
+.DS_Store
+.env
